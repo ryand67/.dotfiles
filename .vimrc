@@ -9,6 +9,9 @@ Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -19,7 +22,20 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-prettier',
   \ 'coc-json',
+  \ 'coc-css',
   \ ]
+
+" coc make selection
+" Use <c-space> to trigger completion.
+"if has('nvim')
+"    inoremap <silent><expr> <c-space> coc#refresh()
+"else
+"    inoremap <silent><expr> <Nul> coc#refresh()
+"endif
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -31,11 +47,6 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -50,12 +61,15 @@ endfunction
 
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusWithFlags = 1
+let g:NERDTreeIgnore = ['^node_modules']
+let NERDTreeShowHidden=1
 
 colorscheme gruvbox
 set background=dark
 
 " Show line numbers
 set number
+set relativenumber
 
 " Status bar
 set laststatus=2
@@ -70,8 +84,11 @@ set ignorecase "Ignores case when searching"
 set smartcase "Unless you put some caps in your search term"
 
 set encoding=UTF-8
+set guifont=Fira_Code:h16
 
 imap kj <Esc>
 set re=0
 
+set splitbelow
+set mouse=a
 set clipboard=unnamed
