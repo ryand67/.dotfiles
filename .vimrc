@@ -12,6 +12,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
@@ -25,18 +28,11 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ ]
 
-" coc make selection
-" Use <c-space> to trigger completion.
-"if has('nvim')
-"    inoremap <silent><expr> <c-space> coc#refresh()
-"else
-"    inoremap <silent><expr> <Nul> coc#refresh()
-"endif
-
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 
+" coc make selection
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ CheckBackspace() ? "\<TAB>" :
@@ -68,7 +64,7 @@ colorscheme gruvbox
 set background=dark
 
 " Show line numbers
-set number
+set nu
 set relativenumber
 
 " Status bar
@@ -88,6 +84,10 @@ set guifont=Fira_Code:h16
 
 imap kj <Esc>
 set re=0
+
+" Misc
+set nohlsearch
+set noerrorbells
 
 set splitbelow
 set mouse=a
