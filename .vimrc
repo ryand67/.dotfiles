@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
-Plug 'kien/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs'
@@ -15,8 +14,18 @@ Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
+
+Plug 'alvan/vim-closetag'
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'KabbAmine/vCoolor.vim'
 
 call plug#end()
+
+" Telescope shortcuts
+nnoremap <silent>ff :Telescope find_files<CR>
 
 " coc config
 let g:coc_global_extensions = [
@@ -43,6 +52,20 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" coc snippet selection
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
