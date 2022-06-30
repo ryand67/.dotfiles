@@ -22,10 +22,14 @@ Plug 'alvan/vim-closetag'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'KabbAmine/vCoolor.vim'
 
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 " Telescope shortcuts
 nnoremap <silent>ff :Telescope find_files<CR>
+nnoremap <silent>fg :Telescope live_grep<CR>
+nnoremap <silent>fb :Telescope buffers<CR>
 
 " coc config
 let g:coc_global_extensions = [
@@ -80,7 +84,6 @@ endfunction
 
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusWithFlags = 1
-let g:NERDTreeIgnore = ['^node_modules']
 let NERDTreeShowHidden=1
 
 colorscheme gruvbox
@@ -107,6 +110,11 @@ set guifont=Fira_Code:h16
 
 imap kj <Esc>
 set re=0
+
+" Horizontal bar
+if exists("&colorcolumn")
+  set colorcolumn=80
+endif
 
 " Misc
 set nohlsearch
