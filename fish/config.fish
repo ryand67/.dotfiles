@@ -3,6 +3,7 @@ if status is-interactive
 end
 
 alias ll="ls -al"
+alias c="clear"
 
 function nv
     nvim $argv
