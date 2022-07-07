@@ -22,17 +22,41 @@ require'lspconfig'.gopls.setup{
 	on_attach = on_attach
 }
 
--- typescript/js
+-- ts/s/t/jsx
 require'lspconfig'.tsserver.setup{
 	capabilities = capabilities,
 	on_attach = on_attach
 }
 
+-- rust
 require'lspconfig'.rust_analyzer.setup({
-		capabilities = capabilities,
-		on_attach = on_attach
-	})
+	capabilities = capabilities,
+	on_attach = on_attach
+})
 
+-- lua
+require'lspconfig'.sumneko_lua.setup{
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			runtime = {
+				version = 'LuaJIT'
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true)
+			},
+			diagnostics = {
+				globals = { 'vim' }
+			},
+			telemetry = {
+				enable = false
+			}
+		}
+	}
+}
+
+--settings
 vim.opt.completeopt={"menu", "menuone", "noselect"}
 
 -- Setup nvim-cmp.

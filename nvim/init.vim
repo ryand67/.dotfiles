@@ -46,6 +46,7 @@ lua require("lsp")
 nnoremap <silent>ff :Telescope find_files<CR>
 nnoremap <silent>fg :Telescope live_grep<CR>
 nnoremap <silent>fb :Telescope buffers<CR>
+nnoremap <silent>fh :Telescope help_tags<CR>
 
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusWithFlags = 1
