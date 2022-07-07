@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'alvan/vim-closetag'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'KabbAmine/vCoolor.vim'
+Plug 'sbdchd/neoformat'
 
 Plug 'rust-lang/rust.vim'
 
@@ -49,6 +50,13 @@ nnoremap <silent>fb :Telescope buffers<CR>
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusWithFlags = 1
 let NERDTreeShowHidden=1
+
+" Prettier
+let g:neoformat_try_node_exe = 1
+autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.ts Neoformat
+autocmd BufWritePre *.jsx Neoformat
+autocmd BufWritePre *.tsx Neoformat
 
 colorscheme gruvbox
 set background=dark
