@@ -13,6 +13,9 @@ local on_attach = function(client, buffer)
 		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = 0 })
 end
 
+-- snippets
+require("luasnip.loaders.from_snipmate").load({ path = { "../snippets" } })
+
 -- golang
 require'lspconfig'.gopls.setup{
 	capabilities = capabilities,
