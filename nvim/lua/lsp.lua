@@ -56,6 +56,9 @@ require'lspconfig'.sumneko_lua.setup{
 	}
 }
 
+-- sql
+require'lspconfig'.sqlls.setup{}
+
 --settings
 vim.opt.completeopt={"menu", "menuone", "noselect"}
 

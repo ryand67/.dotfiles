@@ -17,6 +17,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-commentary'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'sbdchd/neoformat'
@@ -33,6 +34,10 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
+
+" DadBod
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 call plug#end()
 
@@ -58,6 +63,8 @@ autocmd BufWritePre *.js Neoformat
 autocmd BufWritePre *.ts Neoformat
 autocmd BufWritePre *.jsx Neoformat
 autocmd BufWritePre *.tsx Neoformat
+autocmd BufWritePre *.rs Neoformat
+
 
 colorscheme gruvbox
 set background=dark
