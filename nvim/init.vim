@@ -1,6 +1,8 @@
 set nocompatible
 call plug#begin('~/.local/share/nvim/site/autoload')
 
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'morhetz/gruvbox'
@@ -86,7 +88,7 @@ set ignorecase "Ignores case when searching"
 set smartcase "Unless you put some caps in your search term"
 
 set encoding=UTF-8
-set guifont=Fira_Code:h16
+set guifont="Fira Code Regular Nerd Font Complete"
 
 imap kj <Esc>
 set re=0
