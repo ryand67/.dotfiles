@@ -2,40 +2,45 @@
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(client, buffer)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-		vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
-		vim.keymap.set("n", "<leader>dr", vim.diagnostic.goto_next, { buffer = 0 })
-		vim.keymap.set("n", "<leader>pr", vim.diagnostic.goto_prev, { buffer = 0 })
-		vim.keymap.set("n", "<leader>tr","<cmd>Telescope diagnostics<cr>", { buffer = 0 })
-		vim.keymap.set("n", "<leader>fr","<cmd>Telescope lsp_references<cr>", { buffer = 0 })
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = 0 })
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+	vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+	vim.keymap.set("n", "<leader>dr", vim.diagnostic.goto_next, { buffer = 0 })
+	vim.keymap.set("n", "<leader>pr", vim.diagnostic.goto_prev, { buffer = 0 })
+	vim.keymap.set("n", "<leader>tr", "<cmd>Telescope diagnostics<cr>", { buffer = 0 })
+	vim.keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", { buffer = 0 })
+	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = 0 })
 end
 
 -- snippets
 require("luasnip.loaders.from_snipmate").load({ path = { "../snippets" } })
 
 -- golang
-require'lspconfig'.gopls.setup{
+require 'lspconfig'.gopls.setup {
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
+	settings = {
+		gopls = {
+			gofumpt = true
+		}
+	}
 }
 
 -- ts/s/t/jsx
-require'lspconfig'.tsserver.setup{
+require 'lspconfig'.tsserver.setup {
 	capabilities = capabilities,
 	on_attach = on_attach
 }
 
 -- rust
-require'lspconfig'.rust_analyzer.setup({
+require 'lspconfig'.rust_analyzer.setup({
 	capabilities = capabilities,
 	on_attach = on_attach
 })
 
 -- lua
-require'lspconfig'.sumneko_lua.setup{
+require 'lspconfig'.sumneko_lua.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	settings = {
@@ -57,16 +62,16 @@ require'lspconfig'.sumneko_lua.setup{
 }
 
 -- sql
-require'lspconfig'.sqlls.setup{
+require 'lspconfig'.sqlls.setup {
 	on_attach = on_attach,
-	capabilities = capabilities	
+	capabilities = capabilities
 }
 
 --settings
-vim.opt.completeopt={"menu", "menuone", "noselect"}
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
 	snippet = {
@@ -83,7 +88,7 @@ cmp.setup({
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.abort(),
-		['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		['<Enter>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },

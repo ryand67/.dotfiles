@@ -55,8 +55,6 @@ nnoremap <silent>fg :Telescope live_grep<CR>
 nnoremap <silent>fb :Telescope buffers<CR>
 nnoremap <silent>fh :Telescope help_tags<CR>
 
-nnoremap <silent>gb :Git blame<CR>
-
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusWithFlags = 1
 let NERDTreeShowHidden=1
@@ -69,6 +67,15 @@ autocmd BufWritePre *.jsx Neoformat
 autocmd BufWritePre *.tsx Neoformat
 autocmd BufWritePre *.rs Neoformat
 
+" Misc commands
+" Opens git blame
+nnoremap <silent>gb :Git blame<CR>
+" Duplicates current tab
+nnoremap <silent>ts :tab split<CR>
+" Close current tab
+nnoremap <silent>tc :tab close<CR>
+
+" Misc settings
 
 colorscheme gruvbox
 set background=dark
@@ -110,3 +117,11 @@ let mapleader = " "
 set splitbelow
 set mouse=a
 set clipboard=unnamed
+
+setlocal spell
+setlocal spelllang=en
+setlocal spellsuggest=best,9
+
+nnoremap <silent> <F10> :set spell!<CR>
+
+autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
